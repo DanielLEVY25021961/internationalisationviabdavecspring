@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<!-- =====================================================  -->
+	<!--    MessageSource (internationalisation dans Spring     -->
+	<!-- =====================================================  -->
+    <bean id="messageSource" class="com.developpez.hikage.spring.i18n.DatabaseMessageSource">
+        <property name="messageMngt" ref="messageMngt"/>
+    </bean>
+
+    <!--<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>message</value>
+
+            </list>
+        </property>
+    </bean>-->
+
+	<!-- ===============  -->
+	<!--     SERVICEs     -->
+	<!-- ===============  -->
+    <!-- Définition du service -->    
+    <bean id="messageMngt" class="com.developpez.hikage.spring.i18n.service.impl.MessageMngtImpl">
+        <property name="langueDefaut" value="fr"/>
+        <property name="messageDao" ref="messageDao"/>
+    </bean>
+
+	<!-- ===============  -->
+	<!--       DAOs       -->
+	<!-- ===============  -->
+    <!-- Définition du DAO -->
+    <bean id="messageDao" class="com.developpez.hikage.spring.i18n.dao.impl.MessageDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+	<!-- =========================================  -->
+	<!--       DATASOURCES (bases de données)       -->
+	<!-- =========================================  -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/spring-message"/>
+        <property name="username" value="spring"/>
+        <property name="password" value="spring"/>
+        
+    </bean>
+
+</beans>

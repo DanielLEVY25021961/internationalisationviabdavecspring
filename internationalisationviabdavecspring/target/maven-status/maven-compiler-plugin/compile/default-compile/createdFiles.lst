@@ -1,0 +1,6 @@
+com\developpez\hikage\spring\App.class
+com\developpez\hikage\spring\i18n\DatabaseMessageSource.class
+com\developpez\hikage\spring\i18n\service\impl\MessageMngtImpl.class
+com\developpez\hikage\spring\i18n\dao\impl\MessageDaoImpl.class
+com\developpez\hikage\spring\i18n\service\IMessageMngt.class
+com\developpez\hikage\spring\i18n\dao\IMessageDao.class
