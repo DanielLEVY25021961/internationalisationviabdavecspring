@@ -1,32 +1,31 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-         
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
          
          <!-- ================================================== -->
          <!-- 			POM pour MAVEN 3.5.0					 -->
          <!-- 			Java 1.8.0_144							 -->
          <!-- ================================================== -->
          
-         
+	
 	<!-- Version du POM. -->
 	<modelVersion>4.0.0</modelVersion>
-
-
+	
+	
 	<!-- ========================================================== -->
 	<!-- GAV (identifiant du projet)                                -->
 	<!-- G : groupId : nom de domaine                               -->
 	<!-- A : artifactId : nom du projet                             -->
 	<!-- V : version : version du projet                            -->
 	<!-- ========================================================== -->
-	<!-- domaine (espace de nom) appelé GROUPE (G) dans Maven -->
-    <groupId>com.developpez.hikage.spring</groupId>
+	<!-- domaine (espace de nom) appelé GROUPE (G) dans Maven -->	
+	<groupId>levy.daniel.application</groupId>
     <!-- Nom du projet appelé artifactId (A) dans Maven -->
     <!-- MAVEN UTILISE artifactId-version pour nommer le binaire -->
-    <artifactId>internationalisationviabdavecspring</artifactId>
- 	<!-- Version 1.0 (incrémentée dans Maven)  -->
-    <version>1.0</version>
-    
-    
+	<artifactId>maven_quickstart</artifactId>
+ 	<!-- Version 0.0.1-SNAPSHOT (non incrémentée dans Maven)  -->	
+	<version>0.0.1-SNAPSHOT</version>
+
+
 	<!-- ========================================================== -->
 	<!--                       PACKAGING                            -->
 	<!-- Préciser ici la forme du livrable                          -->
@@ -36,7 +35,6 @@
 	<!-- Résultat du Packaging (forme du livrable). Ici jar -->
 	<packaging>jar</packaging>
 	
-	
 	<!-- ========================================================== -->
 	<!-- NOM DU LIVRABLE GENERE PAR MAVEN                           -->
 	<!-- Préciser le nom du livrable que Maven doit produire        -->
@@ -44,13 +42,13 @@
 	<!-- monapplication.jar, monapplication.POM, ...).              -->
 	<!-- ========================================================== -->
 	<!-- Nom de l'application générée par le projet Maven -->	    
-    <name>internationalisation-via-bd-avec-spring</name>
+    <name>maven_quickstart</name>
     <!-- Description de l'application générée par le projet Maven -->
-	<description>internationalisation via une base de données avec Spring</description>
+	<description>maven_quickstart modernisé</description>
 	<!-- URL éventuelle permettant de se connecter à l'application -->
     <url>http://maven.apache.org</url>
     
-      
+    
     
     <!-- ================================================ -->
 	<!--                    PROPERTIEs                    -->
@@ -68,7 +66,6 @@
 	</properties>
 
 
-
 	<!-- =========================================================== -->
 	<!--            DEPENDANCY MANAGEMENT POUR SPRING                -->
 	<!-- Gestion des dépendances SPRING utilisées par le projet      -->
@@ -76,113 +73,74 @@
 	<!-- =========================================================== -->  
 	<dependencyManagement>
 	    <dependencies>
-	        <dependency>
-	            <groupId>org.springframework</groupId>
-	            <artifactId>spring-framework-bom</artifactId>
-	            <version>4.3.10.RELEASE</version>
-	            <type>pom</type>
-	            <scope>import</scope>
-	        </dependency>
+	        <!-- https://mvnrepository.com/artifact/org.springframework/spring-framework-bom -->
+			<dependency>
+			    <groupId>org.springframework</groupId>
+			    <artifactId>spring-framework-bom</artifactId>
+			    <version>5.0.0.RELEASE</version>
+			    <type>pom</type>
+			    <!-- Indispensable de préciser scope = import -->
+			    <scope>import</scope>
+			</dependency>
 	    </dependencies>
 	</dependencyManagement>
-	
+
 
 	<!-- =============================================== -->
 	<!--                DEPENDANCEs                      -->
 	<!-- Gestion des dépendances utilisées par le projet -->
 	<!-- =============================================== -->  
-    <dependencies>
+	<dependencies>
 
-		<!-- ========================================================== -->
-		<!--           DEPENDANCES POUR SPRING  						-->
-		<!-- ========================================================== -->
-		<!-- SPRING CORE -->
+
+		<!-- ================================ -->
+		<!--    dépendances pour SPRING       -->
+		<!-- ================================ -->
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
-		<!-- FONDAMENTAL - IoC and Dependency Injection features -->
 		<dependency>
-    		<groupId>org.springframework</groupId>
-    		<artifactId>spring-core</artifactId>
-    		<scope>compile</scope>
-		</dependency>
-		
-		<!-- SPRING CONTEXT -->
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-core</artifactId>
+		    <scope>compile</scope>
+		</dependency>		
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
-		<!-- FONDAMENTAL - access objects like a JNDI registry, internationalization  -->
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-context</artifactId>
 		    <scope>compile</scope>
 		</dependency>
-		
-		<!-- SPRING BEANS -->
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-aop -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-aop</artifactId>
+		    <scope>compile</scope>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
-		<!-- FONDAMENTAL - IoC and Dependency Injection features -->
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-beans</artifactId>
 		    <scope>compile</scope>
 		</dependency>
 		
-		<!-- SPRING WEB -->
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
-		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-web</artifactId>
-		    <scope>compile</scope>
-		</dependency>
 		
-        <!-- SPRING WEB MVC -->
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<scope>compile</scope>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-webmvc</artifactId>
+		    <scope>compile</scope>
 		</dependency>
 		
-		<!-- SPRING TEST -->
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+		
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
 		<dependency>
 		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-test</artifactId>
-		    <scope>test</scope>
+		    <artifactId>spring-orm</artifactId>
+		    <scope>compile</scope>
 		</dependency>
-		
-		<!-- SPRING JDBC -->
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
-		<!--  JDBC-abstraction layer that removes the need to do tedious JDBC 
-		coding and parsing of database-vendor specific error codes -->
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-tx -->
 		<dependency>
 		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-jdbc</artifactId>
+		    <artifactId>spring-tx</artifactId>
 		    <scope>compile</scope>
-		</dependency>
-		
-		<!-- SPRING INTEGRATION-CORE -->
-		<!-- https://mvnrepository.com/artifact/org.springframework.integration/spring-integration-core -->
-		<dependency>
-		    <groupId>org.springframework.integration</groupId>
-		    <artifactId>spring-integration-core</artifactId>
-		    <version>4.3.11.RELEASE</version>
-		    <scope>compile</scope>
-		</dependency>
-		
-
-		<!-- ================================= -->
-		<!--    dépendances pour TAGLIBS       -->
-		<!-- ================================= -->
-		<!-- JSTL -->		
-		<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
-		<dependency>
-		    <groupId>javax.servlet</groupId>
-		    <artifactId>jstl</artifactId>
-		    <version>1.2</version>
-		    <scope>compile</scope>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.taglibs/taglibs-standard-impl -->
-		<dependency>
-		    <groupId>org.apache.taglibs</groupId>
-		    <artifactId>taglibs-standard-impl</artifactId>
-		    <version>1.2.5</version>
 		</dependency>
 
 
@@ -225,10 +183,11 @@
 			<version>1.2.17</version>
 			<scope>compile</scope>
 		</dependency>
+
 		
 		<!-- =============================================== -->
 		<!-- dépendances pour Log4j2 utilisé par Hibernate 5 -->
-		<!-- =============================================== -->		
+		<!-- =============================================== -->				
 		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
 		<dependency>
 		    <groupId>org.apache.logging.log4j</groupId>
@@ -305,43 +264,70 @@
 		    <scope>compile</scope>
 		</dependency>
 
-    </dependencies>
+	</dependencies>
 
-
-    
- 	<!-- ================================================ -->
-	<!--                REPOSITORIEs                      -->
-	<!-- Gestion des repositories utilisées par le projet -->
-	<!-- Pour aller chercher les dépendances.             -->
-	<!-- ================================================ -->
-	<!-- Ici les RELEASES, pas les milestones ou les snapshots. -->
+	
+				<!-- ======================================  -->
+				<!--   REPOSITORIES	POUR LES DEPENDANCES  	 -->
+				<!-- ======================================  -->	
+			<!-- Précise la localisation des dépôts Maven -->
 	<repositories>
-	    <repository>
+	
+		<!-- Dépôt Central MAVEN pour les dépendances -->
+		<repository>
+			<id>central</id>
+			<name>Central Repository</name>
+			<url>https://repo.maven.apache.org/maven2</url>
+			<!-- Ici les RELEASES, pas les milestones ou les snapshots. -->
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>			
+		</repository>
+		
+		<!-- http://www.baeldung.com/spring-maven-repository -->
+		<!-- dépôt Maven pour SPRING au cas où le dépôt central est indisponible. -->
+		<repository> 
+        <id>repository.spring.release</id> 
+        	<name>Spring GA Repository</name> 
+        	<url>http://repo.spring.io/release</url>
+        	<!-- Ici les RELEASES, pas les milestones ou les snapshots. -->
+        	<snapshots>
+				<enabled>false</enabled>
+			</snapshots>			         
+    	</repository>
+    	
+    	<!-- dépôt Maven pour SPRING au cas où le dépôt central est indisponible. -->
+    	<repository>
 	        <id>io.spring.repo.maven.release</id>
 	        <url>http://repo.spring.io/release/</url>
-	        <snapshots><enabled>false</enabled></snapshots>
+	        <!-- Ici les RELEASES, pas les milestones ou les snapshots. -->
+	        <snapshots>
+	        	<enabled>false</enabled>
+	        </snapshots>
 	    </repository>
+    	    	
 	</repositories>
-
-
+	
+  
   				<!-- ================================== -->
 				<!--       PLUGIN REPOSITORIES			-->
 				<!-- ================================== -->	
   			
-  <pluginRepositories>
-    <pluginRepository>
-      <releases>
-        <updatePolicy>never</updatePolicy>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <id>central</id>
-      <name>Central Repository</name>
-      <url>https://repo.maven.apache.org/maven2</url>
-    </pluginRepository>
-  </pluginRepositories>
-    
+	  <pluginRepositories>
+	    <pluginRepository>
+	      <releases>
+	        <updatePolicy>never</updatePolicy>
+	      </releases>
+	      <snapshots>
+	        <enabled>false</enabled>
+	      </snapshots>
+	      <id>central</id>
+	      <name>Central Repository</name>
+	      <url>https://repo.maven.apache.org/maven2</url>
+	    </pluginRepository>
+	  </pluginRepositories>
+  
+
 
 	<!-- ================================== -->
 	<!--               BUILD                -->
@@ -349,7 +335,6 @@
 	<!-- Définition de la Structure du projet Maven -->
 	<!-- ATTENTION : bien mettre des slash '/' et pas des antislashes '\' pour 
 		garantir la compatibilité avec LINUX -->
-
 
 	<build>
 
@@ -392,6 +377,7 @@
 		<finalName>${project.artifactId}-${project.version}</finalName>
 
 
+
 		<!-- ================================== -->
 		<!-- Management des plugins -->
 		<!-- ================================== -->
@@ -414,12 +400,12 @@
 					<version>3.1.0</version>
 					<configuration>
 						<finalName>${project.artifactId}-${project.version}</finalName>
-						<descriptors>
-							<descriptor>src/assembly/assembly.xml</descriptor>		
-						</descriptors>					
-<!-- 						<descriptorRefs> -->
-<!-- 							<descriptorRef>jar-with-dependencies</descriptorRef> -->
-<!-- 						</descriptorRefs> -->
+<!-- 						<descriptors> -->
+<!-- 							<descriptor>src/assembly/assembly.xml</descriptor>		 -->
+<!-- 						</descriptors>					 -->
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
 					<archive>
 						<index>true</index>
 						<manifest>
@@ -648,9 +634,9 @@
 					</execution>
 				</executions>
 			</plugin>
-							
+
 		</plugins>
-		
+
 	</build>
 
 
@@ -671,5 +657,5 @@
     	</plugins>
   	</reporting>
 	
-   
+
 </project>
