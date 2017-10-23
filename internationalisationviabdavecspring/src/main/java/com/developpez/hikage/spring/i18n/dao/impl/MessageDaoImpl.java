@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.SingleColumnRowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
@@ -63,16 +64,21 @@ public class MessageDaoImpl
     			, final String pLangue
     				, final String pPays) {
 
-        final List<String> result 
-        	= getJdbcTemplate().query(
+		final JdbcTemplate jdbcTemplate = this.getJdbcTemplate();
+		
+		if (jdbcTemplate != null) {
+			
+			final List<String> result 
+        	= jdbcTemplate.query(
         			"SELECT texte FROM messages WHERE `key` = ? AND langue = ? and pays = ?"
         				, new Object[]{pCle, pLangue, pPays}
         					, new SingleColumnRowMapper<String>(String.class));
         
-        if (result.size() == 1) {
-        	return result.get(0);
-        }
-        
+	        if (result.size() == 1) {
+	        	return result.get(0);
+	        }
+		}
+                
         return null;
         
     } // Fin de getMessage.________________________________________________
@@ -88,15 +94,21 @@ public class MessageDaoImpl
     		final String pCle
     			, final String pLangue) {
         
-		final List<String> result 
-			= getJdbcTemplate().query(
+		final JdbcTemplate jdbcTemplate = this.getJdbcTemplate();
+		
+		if (jdbcTemplate != null) {
+			
+			final List<String> result 
+				= jdbcTemplate.query(
 					"SELECT texte FROM messages WHERE `key` = ? AND langue = ? and pays is null"
 						, new Object[]{pCle, pLangue}
 							, new SingleColumnRowMapper<String>(String.class));
 
-        if (result.size() == 1) {
-        	return result.get(0);
-        }
+	        if (result.size() == 1) {
+	        	return result.get(0);
+	        }
+
+		}
         
         return null;
         
